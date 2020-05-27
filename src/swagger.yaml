@@ -1,0 +1,121 @@
+
+swagger: '2.0'
+info:
+  description: 'Stonefly Calculator API'
+  version: 1.0.0
+  title: API
+host: '127.0.0.1:3000'
+basePath: /
+
+schemes:
+  - http
+paths:
+  
+  /login:
+    post:
+      tags:
+        - User
+      summary: Login
+      description: ''
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/LoginRequest'
+      responses:
+        200:
+          description: "Authenticated.
+          Use this token for authentication of other routes"
+        404:
+          description: Invalid input
+
+  /quotations:
+    post:
+      tags:
+        - Quotations
+      summary: Create Quotation
+      description: ''
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: token
+          required: true
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/QuotationCreateRequest'
+      responses:
+        200:
+          description: OK
+        404:
+          description: Invalid input
+          
+    get:
+      tags:
+        - Quotations
+      summary: Get All Quotations
+      description: ''
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: token
+          required: true
+      responses:
+        200:
+          description: OK
+        404:
+          description: Invalid input
+
+
+definitions:
+          
+  LoginRequest:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+      password:
+        type: "string"
+
+  QuotationCreateRequest:
+    type: "object"
+    properties:
+      companyId: 
+        type: "integer"
+        required: true
+      title: 
+        type: "string"
+        required: true
+      totalPrice: 
+        type: "number"
+        required: true
+      totalDiscount: 
+        type: "number"
+      totalDiscountedPrice: 
+        type: "number"
+      quotationDetail: 
+        type: "array"
+        items: 
+          $ref: "#/definitions/QuotationDetailRequest"
+
+  QuotationDetailRequest:
+    type: "object"
+    properties:
+      productId: 
+        type: "interger"
+        required: true
+      quantity: 
+        type: "integer"
+        required: true
