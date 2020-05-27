@@ -23,21 +23,4 @@ export class CommonUtil {
         time = (slotObj.minute >= 0) ? time + ':' + padNo(slotObj.minute).toString() : time + ':00';
         return time;
     }
-    static generateOtp() {
-        console.log(otplib);
-        let authenticator: any = otplib.authenticator;
-        authenticator.options = { crypto };
-
-        return authenticator.generate(AppConstants.OTP_KEY).toString().slice(0, 4);
-    }
-
-    static getBucketName() {
-        if (process.env.NODE_ENV == "development") {
-            var bucketName = AppConstants.AWS.BUCKET_DEV;
-        } else {
-            var bucketName = AppConstants.AWS.BUCKET_PROD;
-        }
-        return bucketName;
-    }
-
 }

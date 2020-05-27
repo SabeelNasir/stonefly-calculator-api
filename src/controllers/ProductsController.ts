@@ -81,9 +81,9 @@ export class ProductsController {
         if (!fs.existsSync(folderPath)) {
             fs.mkdirSync(folderPath)
         }
-        const uploadedFile: any = req.files.file
-        const fileName = moment().unix() + "_" + uploadedFile.name
-        uploadedFile.mv(folderPath + fileName)
+        const uploadedFile: any = req.files
+        const fileName = moment().unix() + "_" + uploadedFile.file.name
+        uploadedFile.file.mv(folderPath + fileName)
             .then((result: any) => {
                 ResponseWrapperUtil.sendSuccessResponse(res, {
                     message: "File uploaded succesfully",
