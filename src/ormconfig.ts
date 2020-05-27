@@ -10,7 +10,7 @@ const OrmConfig: any = {
     "host": process.env.APP_DB_HOST || "localhost",
     "port": Number(process.env.APP_DB_PORT) || 3306,
     "username": process.env.APP_DB_USER || "root",
-    "password": process.env.APP_DB_PASS || "",
+    // "password": process.env.APP_DB_PASS || "",
     "database": process.env.APP_DB_NAME || "stonefly_db",
     "logging": false,
     "entities": [
