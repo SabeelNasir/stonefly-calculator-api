@@ -23,6 +23,7 @@ const OrmConfig: any = {
         min: 10
     }
 }
+
 const OrmConfigProd: any = {
     "type": "mysql",
     "host": process.env.APP_DB_HOST || "localhost",
