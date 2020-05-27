@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "npm run serve",
-    "build": "npm run build-ts",
+    "copy": "cp src/swagger.yaml dist/",
+    "build": "npm run build-ts && npm run copy",
     "postinstall": "npm run build",
     "serve": "node dist/server.js",
     "watch-node": "nodemon dist/server.js",
